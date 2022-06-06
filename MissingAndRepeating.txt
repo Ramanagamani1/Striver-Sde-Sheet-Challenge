@@ -1,0 +1,18 @@
+/* Find missing and repeating */
+
+int *findTwoElement(int *arr, int n) {
+        // code here
+        long long int totalsqsum=n*(n+1)*(2*n+1)/6;
+        long long int sum=n*(n+1)/2;
+        for(int i=0;i<n;i++){
+            totalsqsum-=(long long int)arr[i]*(long long int)arr[i];
+            sum-=(long long int)arr[i];
+        }
+        long long int repeated=0,missing=0;
+        missing=(sum+totalsqsum/sum)/2;
+        repeated=missing-sum;
+        int *ans=new int[2];
+        ans[0]=repeated;
+        ans[1]=missing;
+        return ans;
+    }
