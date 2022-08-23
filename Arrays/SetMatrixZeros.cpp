@@ -1,3 +1,4 @@
+TC: 2*(N*M)
 /* Set Matrix zeros
 
 Problem Statement
@@ -76,7 +77,7 @@ void setZeros(vector<vector<int>> &matrix)
 				matrix[i][j]=0;
 		}
 		if(flag){
-			matrix[i][0]=0;
+			matrix[i][0]=0; // marking the first column as 0 if flag=true
 		}
 	}
 }
