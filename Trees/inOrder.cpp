@@ -1,0 +1,13 @@
+void inorderTraversal(Node *root,vector<int> &ans) {
+        if(root==NULL)
+           return ;
+        inorderTraversal(root->left,ans);
+        ans.push_back(root->data);
+        inorderTraversal(root->right,ans);
+    }
+    vector<int> inOrder(Node* root) {
+        // Your code here
+        vector<int> ans;
+        inorderTraversal(root,ans);
+        return ans;
+    }
