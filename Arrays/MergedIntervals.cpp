@@ -85,24 +85,23 @@ vector<vector<int>> mergeIntervals(vector<vector<int>> &intervals)
 
 
 /*
- vector<vector<int>> merge(vector<vector<int>>& intervals) {
-        int n= intervals.size();
-        vector<vector<int>> ans;
-        if(n==1)
-            return intervals;
-        
-        sort(intervals.begin(),intervals.end());
-        vector<int> temp=intervals[0];
-        for(auto it: intervals) {
-             if(it[0]<=temp[1]){
-                 temp[1]=max(it[1],temp[1]);
-             }
-            else {
-                ans.push_back(temp);
-                temp=it;
-            }
-        }
-        ans.push_back(temp);
-        return ans;
-    }
+ #include<vector>
+
+vector<vector<int>> mergeOverlappingIntervals(vector<vector<int>> &arr){
+	vector<vector<int>> ans;
+	int n = arr.size();
+
+	sort(arr.begin(),arr.end());
+	for(int i=0;i<n;i++) {
+
+		if(ans.empty() || ans.back()[1] < arr[i][0]) {
+			ans.push_back(arr[i]);
+		}
+		else {
+			ans.back()[1] = max(ans.back()[1],arr[i][1]);
+		}
+	}
+
+	return ans;
+}
 */

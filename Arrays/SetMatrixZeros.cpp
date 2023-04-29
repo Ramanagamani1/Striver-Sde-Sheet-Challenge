@@ -58,26 +58,45 @@ Only the cell (2,2) has zero. So all the elements of the second row and second c
 */
 
 #include <bits/stdc++.h> 
-void setZeros(vector<vector<int>> &matrix)
-{
-	// Write your code here.
-	int r=matrix.size();
-	int c=matrix[0].size();
-	bool flag=false;
-	for(int i=0;i<r;i++){
-			if(matrix[i][0]==0) flag=true; // marking flag=true if any of the value in column 0 is 0.
-			for(int j=1;j<c;j++){
-				if(matrix[i][j]==0)
-				matrix[i][0]=matrix[0][j]=0;
+vector<vector<int>> zeroMatrix(vector<vector<int>> &matrix, int n, int m) {
+	
+	int col0 = 1;
+
+	for(int i=0;i<n;i++) {
+		for(int j=0;j<m;j++) {
+			if(matrix[i][j]==0) {
+				matrix[i][0] = 0;
+				if(j!=0) {
+					matrix[0][j] = 0;
+				}
+				else {
+					col0 = 0;
+				}
+			}
+ 		}
+	}
+
+	for(int i=1;i<n;i++) {
+		for(int j=1;j<m;j++) {
+             if(matrix[i][j]!=0) {
+
+				 if(matrix[0][j]==0 || matrix[i][0]==0)
+				    matrix[i][j] = 0;
+			 }
 		}
 	}
-	for(int i=r-1;i>=0;i--){
-		for(int j=c-1;j>=1;j--){
-			if(matrix[i][0]==0 || matrix[0][j]==0)
-				matrix[i][j]=0;
-		}
-		if(flag){
-			matrix[i][0]=0; // marking the first column as 0 if flag=true
+
+	if(matrix[0][0]==0) {
+		for(int j=0;j<m;j++) {
+			matrix[0][j] = 0;
 		}
 	}
+
+	if(col0==0) {
+		for(int i=0;i<n;i++) {
+			matrix[i][0] = 0;
+		}
+	}
+
+	return matrix;
 }
